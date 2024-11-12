@@ -1,0 +1,42 @@
+Removing conda
+Loading conda
+2024-11-03T23:00:56 - INFO:chemprop.cli.main - Running in mode 'fingerprint' with args: {'smiles_columns': None, 'reaction_columns': None, 'no_header_row': False, 'num_workers': 0, 'batch_size': 64, 'accelerator': 'auto', 'devices': 'auto', 'rxn_mode': 'REAC_DIFF', 'multi_hot_atom_featurizer_mode': 'V2', 'keep_h': False, 'add_h': False, 'molecule_featurizers': ['v1_rdkit_2d_normalized'], 'descriptors_path': None, 'no_descriptor_scaling': False, 'no_atom_feature_scaling': False, 'no_atom_descriptor_scaling': False, 'no_bond_feature_scaling': False, 'atom_features_path': None, 'atom_descriptors_path': None, 'bond_features_path': None, 'test_path': PosixPath('/home/pinyang_umass_edu/ALMS/data/c1_c20.csv'), 'output': PosixPath('fps_rdkit_2d.csv'), 'model_paths': [PosixPath('model_0/checkpoints/best-epoch=10-val_loss=1293782.12.ckpt')], 'ffn_block_index': -1}
+2024-11-03T23:00:56 - INFO:chemprop.cli.fingerprint - Fingerprints with model 0 at 'model_0/checkpoints/best-epoch=10-val_loss=1293782.12.ckpt'
+/work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/envs/chemprop/lib/python3.11/site-packages/chemprop/models/model.py:242: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(path, map_location)
+2024-11-04T07:12:27 - INFO:chemprop.cli.fingerprint - test size: 618050
+2024-11-04T07:12:28 - INFO:chemprop.cli.fingerprint - MPNN(
+  (message_passing): BondMessagePassing(
+    (W_i): Linear(in_features=86, out_features=300, bias=False)
+    (W_h): Linear(in_features=300, out_features=300, bias=False)
+    (W_o): Linear(in_features=372, out_features=300, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+    (tau): ReLU()
+    (V_d_transform): Identity()
+    (graph_transform): GraphTransform(
+      (V_transform): Identity()
+      (E_transform): Identity()
+    )
+  )
+  (agg): NormAggregation()
+  (bn): Identity()
+  (predictor): RegressionFFN(
+    (ffn): MLP(
+      (0): Sequential(
+        (0): Linear(in_features=500, out_features=300, bias=True)
+      )
+      (1): Sequential(
+        (0): ReLU()
+        (1): Dropout(p=0.0, inplace=False)
+        (2): Linear(in_features=300, out_features=1, bias=True)
+      )
+    )
+    (criterion): MSE(task_weights=[[1.0]])
+    (output_transform): UnscaleTransform()
+  )
+  (X_d_transform): ScaleTransform()
+  (metrics): ModuleList(
+    (0-1): 2 x MSE(task_weights=[[1.0]])
+  )
+)
+2024-11-04T07:32:50 - INFO:chemprop.cli.fingerprint - Fingerprints saved to 'fps_rdkit_2d_0.csv'

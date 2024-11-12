@@ -1,0 +1,125 @@
+Removing conda
+Loading conda
+2024-11-01T10:07:19 - INFO:chemprop.cli.main - Running in mode 'train' with args: {'smiles_columns': ['smiles'], 'reaction_columns': None, 'no_header_row': False, 'num_workers': 0, 'batch_size': 64, 'accelerator': 'auto', 'devices': 'auto', 'rxn_mode': 'REAC_DIFF', 'multi_hot_atom_featurizer_mode': 'V2', 'keep_h': False, 'add_h': False, 'molecule_featurizers': None, 'descriptors_path': None, 'no_descriptor_scaling': False, 'no_atom_feature_scaling': False, 'no_atom_descriptor_scaling': False, 'no_bond_feature_scaling': False, 'atom_features_path': None, 'atom_descriptors_path': None, 'bond_features_path': None, 'config_path': None, 'data_path': PosixPath('tests/data/regression/mol/qm9/qm9.csv'), 'output_dir': PosixPath('.'), 'remove_checkpoints': False, 'checkpoint': None, 'freeze_encoder': False, 'model_frzn': None, 'frzn_ffn_layers': 0, 'ensemble_size': 1, 'message_hidden_dim': 300, 'message_bias': False, 'depth': 3, 'undirected': False, 'dropout': 0.0, 'mpn_shared': False, 'activation': 'RELU', 'aggregation': 'norm', 'aggregation_norm': 100, 'atom_messages': False, 'ffn_hidden_dim': 300, 'ffn_num_layers': 1, 'batch_norm': False, 'multiclass_num_classes': 3, 'weight_column': None, 'target_columns': ['u0_atom'], 'ignore_columns': None, 'no_cache': False, 'splits_column': None, 'task_type': 'regression', 'loss_function': None, 'v_kl': 0.0, 'eps': 1e-08, 'alpha': 0.1, 'metrics': None, 'tracking_metric': 'val_loss', 'show_individual_scores': False, 'task_weights': None, 'warmup_epochs': 2, 'init_lr': 0.0001, 'max_lr': 0.001, 'final_lr': 0.0001, 'epochs': 50, 'patience': None, 'grad_clip': None, 'class_balance': False, 'split': 'RANDOM', 'split_sizes': [0.8, 0.1, 0.1], 'split_key_molecule': 0, 'num_replicates': 1, 'num_folds': None, 'save_smiles_splits': False, 'splits_file': None, 'data_seed': 0, 'pytorch_seed': None}
+2024-11-01T10:07:19 - INFO:chemprop.cli.train - Pulling data from file: tests/data/regression/mol/qm9/qm9.csv
+2024-11-01T10:07:31 - INFO:chemprop.cli.train - train/val/test split_0 sizes: [107108, 13388, 13389]
+2024-11-01T10:07:31 - INFO:chemprop.cli.train - 
+      Summary of Training Data       
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃       Statistic ┃ Value (u0_atom) ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│     Num. smiles │          107108 │
+│    Num. targets │          107108 │
+│        Num. NaN │               0 │
+│            Mean │       -1.75e+03 │
+│       Std. dev. │             239 │
+│          Median │       -1.75e+03 │
+│ % within 1 s.d. │             69% │
+│ % within 2 s.d. │             95% │
+└─────────────────┴─────────────────┘
+
+2024-11-01T10:07:31 - INFO:chemprop.cli.train - 
+     Summary of Validation Data      
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃       Statistic ┃ Value (u0_atom) ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│     Num. smiles │           13388 │
+│    Num. targets │           13388 │
+│        Num. NaN │               0 │
+│            Mean │       -1.75e+03 │
+│       Std. dev. │             239 │
+│          Median │       -1.75e+03 │
+│ % within 1 s.d. │             69% │
+│ % within 2 s.d. │             96% │
+└─────────────────┴─────────────────┘
+
+2024-11-01T10:07:31 - INFO:chemprop.cli.train - 
+        Summary of Test Data         
+┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃       Statistic ┃ Value (u0_atom) ┃
+┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│     Num. smiles │           13389 │
+│    Num. targets │           13389 │
+│        Num. NaN │               0 │
+│            Mean │       -1.75e+03 │
+│       Std. dev. │             239 │
+│          Median │       -1.76e+03 │
+│ % within 1 s.d. │             69% │
+│ % within 2 s.d. │             96% │
+└─────────────────┴─────────────────┘
+
+2024-11-01T10:07:31 - INFO:chemprop.cli.train - Train data: mean = [-1751.2939344] | std = [239.32223549]
+2024-11-01T10:08:03 - INFO:chemprop.cli.train - No loss function was specified! Using class default: <class 'chemprop.nn.metrics.MSE'>
+2024-11-01T10:08:03 - INFO:chemprop.cli.train - MPNN(
+  (message_passing): BondMessagePassing(
+    (W_i): Linear(in_features=86, out_features=300, bias=False)
+    (W_h): Linear(in_features=300, out_features=300, bias=False)
+    (W_o): Linear(in_features=372, out_features=300, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+    (tau): ReLU()
+    (V_d_transform): Identity()
+    (graph_transform): GraphTransform(
+      (V_transform): Identity()
+      (E_transform): Identity()
+    )
+  )
+  (agg): NormAggregation()
+  (bn): Identity()
+  (predictor): RegressionFFN(
+    (ffn): MLP(
+      (0): Sequential(
+        (0): Linear(in_features=300, out_features=300, bias=True)
+      )
+      (1): Sequential(
+        (0): ReLU()
+        (1): Dropout(p=0.0, inplace=False)
+        (2): Linear(in_features=300, out_features=1, bias=True)
+      )
+    )
+    (criterion): MSE(task_weights=[[1.0]])
+    (output_transform): UnscaleTransform()
+  )
+  (X_d_transform): Identity()
+  (metrics): ModuleList(
+    (0-1): 2 x MSE(task_weights=[[1.0]])
+  )
+)
+2024-11-01T10:08:03 - WARNING:chemprop.cli.train - Unable to import TensorBoardLogger, reverting to CSVLogger (original error: Neither `tensorboard` nor `tensorboardX` is available. Try `pip install`ing either.
+Requirement 'tensorboardX' not met. HINT: Try running `pip install -U 'tensorboardX'`
+Requirement 'tensorboard' not met. HINT: Try running `pip install -U 'tensorboard'`).
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+/work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/envs/chemprop/lib/python3.11/site-packages/lightning/pytorch/callbacks/model_checkpoint.py:654: Checkpoint directory /work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/chemprop/model_0/checkpoints exists and is not empty.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loading `train_dataloader` to estimate number of stepping batches.
+
+  | Name            | Type               | Params | Mode 
+---------------------------------------------------------------
+0 | message_passing | BondMessagePassing | 227 K  | train
+1 | agg             | NormAggregation    | 0      | train
+2 | bn              | Identity           | 0      | train
+3 | predictor       | RegressionFFN      | 90.6 K | train
+4 | X_d_transform   | Identity           | 0      | train
+5 | metrics         | ModuleList         | 0      | train
+---------------------------------------------------------------
+318 K     Trainable params
+0         Non-trainable params
+318 K     Total params
+1.273     Total estimated model params size (MB)
+26        Modules in train mode
+0         Modules in eval mode
+SLURM auto-requeueing enabled. Setting signal handlers.
+`Trainer.fit` stopped: `max_epochs=50` reached.
+/work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/envs/chemprop/lib/python3.11/site-packages/lightning/pytorch/trainer/connectors/checkpoint_connector.py:145: `.predict(ckpt_path=None)` was called without a model. The best model of the previous `fit` call will be used. You can pass `.predict(ckpt_path='best')` to use the best model or `.predict(ckpt_path='last')` to use the last model. If you pass a value, this warning will be silenced.
+Restoring states from the checkpoint path at /work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/chemprop/model_0/checkpoints/best-epoch=45-val_loss=0.00.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Loaded model weights from the checkpoint at /work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/chemprop/model_0/checkpoints/best-epoch=45-val_loss=0.00.ckpt
+SLURM auto-requeueing enabled. Setting signal handlers.
+2024-11-01T10:23:52 - INFO:chemprop.cli.train - Test Set results:
+2024-11-01T10:23:52 - INFO:chemprop.cli.train - test/mse: 12.262380599975586
+/work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/envs/chemprop/lib/python3.11/site-packages/chemprop/models/model.py:242: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(path, map_location)
+/work/pi_pengbai_umass_edu/pinyang_umass_edu-conda/envs/chemprop/lib/python3.11/site-packages/chemprop/models/model.py:286: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  d = torch.load(checkpoint_path, map_location)
+2024-11-01T10:23:52 - INFO:chemprop.cli.train - Best model saved to 'model_0/best.pt'
